@@ -22,10 +22,15 @@ module.exports = function(grunt) {
     }
 
     var done = this.async();
+    var runAllTests = this.options().runAllTests;
     function doneCallback(err) {
       if (err) {
         grunt.log.error(err);
-        return done(false);
+        if (runAllTests) {
+          done();
+        } else {
+          return done(false);
+        }
       }
       done();
     }
